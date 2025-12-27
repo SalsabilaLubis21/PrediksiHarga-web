@@ -227,36 +227,6 @@ main {
   letter-spacing: 0.05em;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  main {
-    padding: var(--space-2xl) var(--space-lg);
-  }
-
-  .glass-container {
-    padding: var(--space-xl);
-  }
-
-  .form-main-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .glass-container {
-    padding: var(--space-lg);
-  }
-
-  .input-group {
-    min-width: 100%;
-  }
-}
-
 .controls select,
 .controls input[type="number"] {
   padding: var(--space-md) var(--space-lg);
@@ -373,6 +343,7 @@ main {
 .chart-container {
   margin-bottom: var(--space-3xl);
   animation: fadeInUp 0.5s var(--ease-smooth);
+  max-height: 500px; /* Batasi tinggi maksimum di desktop */
 }
 
 @keyframes fadeInUp {
@@ -506,10 +477,26 @@ main {
   border-top: 1px solid var(--border-color);
 }
 
+.summary-item p {
+  margin: 0;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+}
+
+.summary-item span {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: var(--text-lg);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   main {
     padding: var(--space-2xl) var(--space-md);
+  }
+
+  .glass-container {
+    padding: var(--space-xl);
   }
 
   .form-main-controls {
@@ -525,43 +512,8 @@ main {
     width: 100%;
   }
 
-  .glass-container {
-    padding: var(--space-xl);
-  }
-
   .info-container {
     grid-template-columns: 1fr;
-  }
-
-  h1 {
-    font-size: var(--text-4xl);
-  }
-  h2 {
-    font-size: var(--text-3xl);
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    padding: var(--space-xl) var(--space-sm);
-  }
-
-  .glass-container {
-    padding: var(--space-lg);
-  }
-
-  h1 {
-    font-size: var(--text-3xl);
-  }
-  h2 {
-    font-size: var(--text-2xl);
-  }
-}
-
-@media (max-width: 768px) {
-  .controls {
-    flex-direction: column;
-    gap: var(--space-lg);
   }
 
   .prediction-result {
@@ -579,11 +531,24 @@ main {
   .prediction-summary p {
     font-size: var(--text-sm);
   }
+
+  .info-card {
+    text-align: left;
+    padding: var(--space-lg);
+  }
+
+  .info-card h3 {
+    font-size: var(--text-lg);
+  }
+
+  .info-card p {
+    font-size: var(--text-sm);
+  }
 }
 
 @media (max-width: 480px) {
   main {
-    padding: var(--space-lg) var(--space-md);
+    padding: var(--space-xl) var(--space-sm);
   }
 
   .glass-container {
@@ -594,17 +559,13 @@ main {
     gap: var(--space-md);
   }
 
-  .control-group label {
-    font-size: var(--text-sm);
-  }
-
   .prediction-result {
     padding: var(--space-md);
   }
 
   .chart-container {
     padding: var(--space-sm);
-    height: 300px; /* Adjust height for mobile screens */
+    height: 400px; /* Adjust height for mobile screens */
   }
 
   .chart-container canvas {
@@ -619,16 +580,4 @@ main {
   .prediction-summary p {
     font-size: var(--text-xs);
   }
-}
-
-.summary-item p {
-  margin: 0;
-  font-size: var(--text-md);
-  color: var(--text-secondary);
-}
-
-.summary-item span {
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: var(--text-lg);
 }

@@ -111,6 +111,7 @@ const Home = () => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
@@ -119,7 +120,7 @@ const Home = () => {
         display: true,
         text: `Prediksi Harga untuk ${selectedCommodity}`,
         font: {
-          size: 18,
+          size: 16,
         },
       },
     },
@@ -129,15 +130,14 @@ const Home = () => {
           display: true,
           text: "Harga (IDR)",
           font: {
-            size: 14,
+            size: 12,
             weight: "bold",
           },
           padding: { bottom: 10 },
         },
         ticks: {
           font: {
-            size: 12,
-            weight: "bold",
+            size: 10,
           },
         },
       },
@@ -146,16 +146,19 @@ const Home = () => {
           display: true,
           text: "Tanggal",
           font: {
-            size: 14,
+            size: 12,
             weight: "bold",
           },
           padding: { top: 10 },
         },
         ticks: {
           font: {
-            size: 12,
-            weight: "bold",
+            size: 10,
           },
+          autoSkip: true,
+          maxTicksLimit: 12,
+          maxRotation: 90,
+          minRotation: 90,
         },
       },
     },
@@ -261,38 +264,47 @@ const Home = () => {
       {error && <p className="error-message">{error}</p>}
       {loading && <div className="spinner"></div>}
       {prediction && (
-        <motion.div
-          className="chart-container glass-container"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <ChartComponent data={chartData} options={chartOptions} />
-          <div className="info-container glass-container">
-            <div className="info-card">
-              <h3>
-                <FaChartLine /> Cara Membaca Grafik Ini
-              </h3>
-              <p>
-                <strong>Prediksi Harga:</strong> Ini adalah perkiraan terbaik
-                model untuk harga komoditas di masa depan.
-              </p>
-              {showBounds && (
+        <>
+          <motion.div
+            className="chart-container glass-container"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <ChartComponent data={chartData} options={chartOptions} />
+          </motion.div>
+          <motion.div
+            className="info-container-wrapper glass-container"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="info-container">
+              <div className="info-card">
+                <h3>
+                  <FaChartLine /> Cara Membaca Grafik Ini
+                </h3>
                 <p>
-                  <strong>Rentang Keyakinan:</strong> Garis-garis ini (atas dan
-                  bawah) mewakili rentang di mana harga sebenarnya kemungkinan
-                  akan berada. Pita yang lebih lebar menunjukkan lebih banyak
-                  ketidakpastian dalam prediksi.
+                  <strong>Prediksi Harga:</strong> Ini adalah perkiraan terbaik
+                  model untuk harga komoditas di masa depan.
                 </p>
-              )}
+                {showBounds && (
+                  <p>
+                    <strong>Rentang Keyakinan:</strong> Garis-garis ini (atas
+                    dan bawah) mewakili rentang di mana harga sebenarnya
+                    kemungkinan akan berada. Pita yang lebih lebar menunjukkan
+                    lebih banyak ketidakpastian dalam prediksi.
+                  </p>
+                )}
+              </div>
+              <div className="info-card">
+                <PredictionSummary
+                  summary={generateSummary(prediction.predictions)}
+                />
+              </div>
             </div>
-            <div className="info-card">
-              <PredictionSummary
-                summary={generateSummary(prediction.predictions)}
-              />
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </>
       )}
     </motion.main>
   );
