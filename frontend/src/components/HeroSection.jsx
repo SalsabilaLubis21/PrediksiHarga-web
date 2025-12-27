@@ -29,12 +29,12 @@ const HeroSection = () => {
 
           <h1 className="hero-title">
             Pantau Harga Pangan
-            <span className="gradient-text"> Indonesia</span>
+            <span className="gradient-text"> Jakarta</span>
           </h1>
 
           <p className="hero-description">
-            Dapatkan prediksi harga komoditas pangan yang akurat dan real-time.
-            Membantu petani, pedagang, dan konsumen membuat keputusan yang lebih
+            Dapatkan prediksi harga komoditas pangan yang akurat di wilayah
+            Jakarta. Membantu pedagang dan konsumen membuat keputusan yang lebih
             baik dengan data yang dapat dipercaya.
           </p>
 
