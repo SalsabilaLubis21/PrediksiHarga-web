@@ -604,6 +604,12 @@ main {
 
   .chart-container {
     padding: var(--space-sm);
+    height: 300px; /* Adjust height for mobile screens */
+  }
+
+  .chart-container canvas {
+    max-height: 100%;
+    max-width: 100%;
   }
 
   .prediction-summary h3 {
