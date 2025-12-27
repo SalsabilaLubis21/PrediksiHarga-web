@@ -13,7 +13,7 @@ import logging
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173", "https://prediksi-harga-web.onrender.com"]}})
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173", "https://prediksi-harga-web.onrender.com", "https://prediksiharga-web.onrender.com"]}})
 logging.basicConfig(level=logging.INFO)
 
 MODELS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'time_series_models'))
