@@ -4,6 +4,10 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
 
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -24,16 +28,20 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
-        <NavLink to="/" className="navbar-logo">
+        <NavLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
           Warta Pangan
         </NavLink>
-        <ul className="nav-menu">
+        <div className="menu-icon" onClick={handleClick}>
+          {click ? "×" : "☰"}
+        </div>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
             <NavLink
               to="/"
               className={({ isActive }) =>
                 "nav-links" + (isActive ? " active" : "")
               }
+              onClick={closeMobileMenu}
             >
               Home
             </NavLink>
@@ -44,6 +52,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 "nav-links" + (isActive ? " active" : "")
               }
+              onClick={closeMobileMenu}
             >
               About
             </NavLink>
